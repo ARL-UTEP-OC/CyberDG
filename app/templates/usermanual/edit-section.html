@@ -1,0 +1,93 @@
+<style>
+  .image17 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<div class="tab-pane fade" id="editSteps">
+  <div class="row text-white">
+    <div class="col-11">
+      <h2 class="display-4 text-white"> Edit </h2>
+      <br>
+      <p class="lead text-white mb-0">
+        The Edit button allows the user to edit a scenario without having to create
+        a new scenario.
+      </p>
+      <div class="separator"></div>
+      <p class="lead"> To edit a scenario follow the instructions below: </p>
+      <p>(From the Landing Page select a scenario from the available scenario list
+        then select the Edit button).</p>
+      <p>Once the Edit button is selected you will be prompted to fill
+        in the following options:</p>
+      <br>
+      <img class="image17" src="{{ url_for('static', filename='imgManual/editScenario.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+      <p align="center"><small>*Demo Scenario is selected in this example.*</small></p>
+      <ul>
+        <!--scenario name-->
+        <li>Scenario Name:
+          <ul>
+            <li>Enter the desired name of the scenario you wish to create. </li>
+            <li style="color:#E74C3C" ;>*Note: Adding a name is required in order to edit the scenario.*</li>
+          </ul>
+        </li>
+        <br>
+        <!--CVE Number-->
+        <li>CVE Number: <small>*This field is not required*</small></li>
+        <ul>
+          <li>The CVE ID numbers are used by cybersecurity product/service vendors and researchers
+            as a standard method for identifying vulnerabilities and for cross-linking with other
+            repositories that also use CVE ID numbers.</li>
+          <li>The CVE ID numbers can be found on websites such as <a href="https://www.exploit-db.com/" target="_blank">Exploit Database</a>
+            or the <a href="https://nvd.nist.gov/" target="_blank">National Vulnerability Database</a> to name a few. </li>
+        </ul>
+        <br>
+        <!--Scenario Description-->
+        <li>Scenario Description:</li>
+        <ul>
+          <li>This section allows for a small description of the scenario that will
+            be displayed on the landing page underneath the selected scenario name from the Available Scenario list.</li>
+          <li style="color:#E74C3C" ;>*Note: Adding a Description is required in order to edit the scenario *</li>
+        </ul>
+        <!--exploits-->
+        <br>
+        <li>Exploits:</li>
+        <ul>
+          <li> This option allows a user to add an exploit file(s) that will run on the virtual machines.</li>
+          <li style="color:#E74C3C" ;>*Note: Adding a name is required in order to edit the scenario.*</li>
+        </ul>
+        <br>
+        <ul>
+          <li>To Add an Exploit File(s) to the Current Scenario: </li>
+          <ul>
+            <li><b>A file must already exist in the system:</b></li>
+            <li>Select the file(s) from drop-down menu, select Save.</li>
+          </ul>
+          <br>
+          <!--vulnerabilities-->
+          <li>Vulnerabilities:</li>
+          <ul>
+            <li> This option allows a user to add an vulnerable file(s) that will run on the virtual machines.</li>
+          </ul>
+          <br>
+          <ul>
+            <li>To Add an Vulnerable File(s) to The Current Scenario: </li>
+            <ul>
+              <li><b>A file must already exist in the system:</b></li>
+              <li>Select the file(s) from the drop-down menu, select Save.</li>
+            </ul>
+            <!--ending section comments-->
+            <br>
+            <li> To finalize the scenario creation, select Save.</li>
+            <br>
+            <li>Once you have selected the Save button, the Landing Page section will open and a alert will display if the edit to the scenario was successful or failed. </li>
+          </ul>
+    </div>
+  </div>
+</div>

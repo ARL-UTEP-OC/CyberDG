@@ -1,0 +1,109 @@
+<!--Navigation Bar & Home Page Design by huykhoong-->
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .image1 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 1050px;
+    height: 550px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<!-- Vertical navbar -->
+<div class="vertical-nav bg-dark" id="sidebar">
+  <div class="py-4 px-3 mb-4 bg-dark">
+    <div class="media-body">
+      <h4 class="font-weight-white text-muted mb-0">Main Menu</h4>
+      <p class="font-weight-grey text-muted mb-0">Click on a Topic To Learn More</p>
+    </div>
+  </div>
+  <ul class="nav flex-column bg-dark mb-0">
+    <p class="text-white font-weight-bold text-uppercase px-3 small pb-4 mb-0">Landing Page</p>
+
+    <li class="nav-item">
+      <a href="" data-target="#about" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fas fa-atlas mr-3 text-primary fa-fw"></i> About </a></li>
+
+    <li class="nav-item">
+      <a href="" data-target="#newScenarioSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fa fa-plus mr-3 text-primary fa-fw"></i> New Scenario </a></li>
+
+    <li class="nav-item">
+      <a href="" data-target="#listScenario" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fas fa-clipboard-list mr-3 text-primary fa-fw "></i> List of Scenarios </a></li>
+
+    <li class="nav-item"><a href="" data-target="#uploadSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fas fa-file-upload mr-3 text-primary fa-fw"></i> Upload File </a></li>
+
+    <li class="nav-item"><a href="" data-target="#ImportSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fas fa-file-import mr-3 text-primary fa-fw"></i> Import </a></li>
+
+    <li class="nav-item"><a href="" data-target="#FilesSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fa fa-file mr-3 text-primary fa-fw"></i> Files </a></li>
+
+    <li class="nav-item"><a href="" data-target="#ConfigureSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fa fa-cog mr-3 text-primary fa-fw"></i> Configure </a></li>
+
+    <li class="nav-item"><a href="" data-target="#DataSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fa fa-database mr-3 text-primary fa-fw"></i> Data </a></li>
+
+    <li class="nav-item"><a href="" data-target="#RunSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fa fa-running mr-3 text-primary fa-fw"></i> Run </a></li>
+
+    <li class="nav-item"><a href="" data-target="#ExportSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fa fa-file-export mr-3 text-primary fa-fw"></i> Export </a></li>
+
+    <li class="nav-item"><a href="" data-target="#editSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fa fa-edit  mr-3 text-primary fa-fw"></i> Edit </a></li>
+
+    <li class="nav-item"><a href="" data-target="#DeleteSteps" data-toggle="tab" class="nav-link text-light font-italic bg-dark">
+        <i class="fa fa-times  mr-3 text-primary fa-fw"></i> Delete </a></li>
+  </ul>
+</div>
+<!-- End vertical navbar -->
+<!-- Page content holder -->
+<div class="tab-content page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-dark bg-dark rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i>
+    <small class="text-uppercase font-weight-bold">Menu</small></button>
+  <!--about-->
+  <div class="tab-pane fade active show" id="about">
+    <h2 class="display-4 text-white">User Information Guide</h2>
+    <p class="lead text-white mb-0">This Guide With Help You Navigate the ExLab System. </p>
+    <div class="separator"></div>
+    <div class="row text-white">
+      <div class="col-lg-11">
+        <p class="lead">Exploit Lab (ExLab) is a tool that automatizes the process of testing the effects of malicious software safely and efficiently.
+          ExLab allows users to create scenarios that serve as test environments and to
+          easily create and connect Virtual Machines (VMs) that can serve as attackers or victims.</p>
+        <br>
+
+        <h5> The Landing Page (Main Page)</h5>
+        <br>
+        <img class="image1" src="{{ url_for('static', filename='imgManual/landingPageB.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+      </div>
+    </div>
+  </div>
+
+  {% include "usermanual/newScenario-section.html" %}
+  {% include "usermanual/listofscenarios-section.html" %}
+  {% include "usermanual/upload-section.html" %}
+  {% include "usermanual/import-section.html" %}
+  {% include "usermanual/files-section.html" %}
+  {% include "usermanual/configure-section.html" %}
+  {% include "usermanual/data-section.html" %}
+  {% include "usermanual/run-section.html" %}
+  {% include "usermanual/export-section.html" %}
+  {% include "usermanual/edit-section.html" %}
+  {% include "usermanual/delete-section.html" %}
+
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/userManualPage.js') }}"></script>
+
+  {% endblock content %}

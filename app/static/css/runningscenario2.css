@@ -1,0 +1,210 @@
+.btn.btn-primary {
+  margin: 10px;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+}
+* {box-sizing: border-box}
+header {
+  width: 100%
+  height: 120px;
+  padding: 10px;
+  text-align: center;
+}
+header i {
+  float: right;
+  padding: 10px;
+}
+header button {
+  float: left;
+  padding: 10px;
+}
+#maincard {
+  height: 100%;
+  overflow: visible;
+}
+.full-width-div {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+#Main-content {
+  padding: 10px;
+  margin:40px;
+  width: 95%;
+  height: 100%;
+  overflow: inherit;
+  border: none;
+}
+#Heading1 {
+  text-align: center;
+}
+.full-height {
+  text-align: center;
+}
+#row1 {
+  padding: 10px;
+}
+
+/* -------------- START Style for Run Tabs -----------------------*/
+.runtab {
+  overflow: hidden;
+  border-top: 2px solid #B0B0B0;
+  background-color: #f1f1f1;
+}
+/* Style the buttons inside the tab */
+.runtab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+/* Change background color of buttons on hover */
+.runtab button:hover {
+  background-color: #ddd;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+/* Create an active/current tablink class */
+.runtab button.active {
+  background-color: #ccc;
+}
+/* Style the tab content */
+.runtabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px #535353;
+  border-top: none;
+}
+#run1{
+  border: none;
+}
+#run2{
+  border: none;
+}
+#run3{
+  border: none;
+}
+
+/* -------------- END Style for Run Tabs -----------------------*/
+
+/* -------------- START Style for VM Tabs -----------------------*/
+.vmtab {
+  float: left;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 300px;
+}
+/* Style the buttons inside the tab */
+.vmtab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+/* Change background color of buttons on hover */
+.vmtab button:hover {
+  background-color: #ddd;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+/* Create an active/current "tab button" class */
+.vmtab button.active {
+  background-color: #ccc;
+}
+/* Style the tab content */
+.vmtabcontent {
+  float: left;
+  padding: 0px 12px;
+  width: 70%;
+  border-left: none;
+  height: 300px;
+}
+
+/* -------------- END Style for VM Tabs -----------------------*/
+/* VM Info Column*/
+#innercol1 {
+  padding: 20px;
+  text-align: center;
+}
+#bugcomp {
+  height: 125px;
+}
+#TimerTxt {
+  border: 1px solid grey;
+  padding: 15px;
+  margin-left: 20px;
+}
+#row-progressbar {
+  padding-top: 30px;
+}
+/* Bug image */
+#col1_sec1 {
+  padding-bottom: 20px;
+  text-align: center;
+}
+/* time to complete ** WILL INSERT REAL TIMER FEATURE*/
+#col1_sec2 {
+  text-align: center;
+}
+/* Summary Content*/
+#col1_sec3 {
+  padding: 20px;
+  text-align: center;
+}
+/* Summary Content*/
+#col1_sec4{
+  padding: 10px;
+}
+#col-bottombuttons {
+  margin: 30px;
+  text-align: center;
+}
+#button-ViewExport {
+  margin-bottom: 5px;
+  padding: 15px;
+}
+#button-ReRunScene {
+  margin: 10px;
+  padding: 15px;
+}
+#button-Reconfig {
+  margin: 10px;
+  padding: 15px;
+}
+/* Quickview Column*/
+#innercol2 {
+  padding: 20px;
+  text-align: center;
+}
+#col-quickview {
+  text-align: center;
+  padding-bottom: 30px;
+}
+#exploitexampleimg {
+  height: 100%;
+  width: 100%;
+  padding-bottom: 60px;
+}
+#button-remotevm {
+  align-self: center;
+  height: 75px;
+  width: 200px;
+}
+#col-remotebutton {
+  text-align: center;
+  padding-top: 20px;
+}
+#defaultOpen {
+}
+.disabled {
+  cursor: not-allowed;
+}

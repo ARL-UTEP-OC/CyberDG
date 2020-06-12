@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container landing-page">
+  <div class="card my-card">
+
+    <div class="row justify-content-around" style="padding-bottom:15px;">
+      <div class="col-2">
+        <button class="btn btn-primary" onclick="window.location.href='{{ url_for('new_scenario') }}';"><i class="fa fa-plus"></i> New Scenario</button>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><i class="fas fa-file-upload"></i>  Upload File</button>
+      </div>
+      <div class="col-8" align="center">
+        <h3>ExLab</h3>
+      </div>
+
+      {# TODO: connect this so it serves a function #}
+      {# <div class="col-2" align="center">
+        <i class="fas fa-question-circle fa-2x"></i>
+      </div> #}
+    </div>
+
+    {# TODO: connect this so it serves a function #}
+    {# <div class="row justify-content-end">
+      <div class="col-2">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+          </div>
+          <input type="text" class="form-control" placeholder="00/00/00">
+        </div>
+      </div>
+    </div> #}
+
+    <div class="row">
+      <div class="col-2">
+
+        <h6><strong><u>Available scenarios</u></strong></h6>
+        {# TODO: connect this so it serves a function #}
+        {# <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Search">
+        </div> #}
+        <div class="overflow-auto" style=" margin-top: 15px; max-height: 250px">
+          <div class="list-group" id="myTab" role="tablist">
+            {% for s in scenarios %}
+            <a class="list-group-item list-group-item-action" href="{{ url_for('scenario', id=s.id) }}" {% if scenario and s.id == scenario.id %} style="background: lightgrey;" {% endif %}>
+              {{s.name}}
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!--For to display all the scenarios names-->
+      </div>
+      <div class="col-10">
+        <div class="card main-card">
+          <div class="row">
+            <div class="col-4">
+              <div class="card info-card">
+                <div class="overflow-auto">
+                  <div class="card-header text-center">
+                    {% if scenario %}
+                    {{scenario.name}}
+                    {% else %}
+                    Select a Scenario
+                    {% endif %}
+                    <!--Info of the Scenario selected should be displayed-->
+                  </div>
+                  {% if scenario %}
+                    <div style="padding:10px;">
+                      <b>Description:</b> {{scenario.description}}
+                    </div>
+                    {% if scenario.cve_number %}
+                    <div style="padding:10px;">
+                      <b>CVE:</b> {{scenario.cve_number}}
+                    </div>
+                    {% endif %}
+                    <div style="padding:10px;">
+                      <b>Files:</b> {% if scenario.file %}
+                        {% for f in scenario.file %}
+                        {{f.name}}
+                        {% endfor %}
+                        {% else %}
+                        None
+                        {% endif %}
+                    </div>
+                  {% endif %}
+
+                </div>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="card info-card" style="padding:10px;">
+                <div class="overflow-auto">
+                  {% if machines %}
+                  <h6>Vulnerable Machines</h6>
+                  {% for m in machines %}
+                    {% if m.machine_type==m.machine_type.victim %}
+                      <ul class="fa-ul">
+                        <li>
+                          <span class="fa-li">
+                            <i class="fas fa-desktop"></i>
+                          </span>
+                          <a href="#configureModal" data-toggle="modal" data-target="#configureModal">{{m.name}}</a>
+                        </li>
+                      </ul>
+                    {% endif %}
+                  {% endfor %}
+
+                  <h6>Exploit Machines</h6>
+                  {% for m in machines %}
+                    {% if m.machine_type==m.machine_type.attacker %}
+                      <ul class="fa-ul">
+                        <li>
+                          <span class="fa-li">
+                            <i class="fas fa-desktop"></i>
+                          </span>
+                          <a href="#configureModal" data-toggle="modal" data-target="#configureModal">{{m.name}}</a>
+                        </li>
+                      </ul>
+                    {% endif %}
+                  {% endfor %}
+
+                  <h6>Victim/Attacker Machines</h6>
+                  {% for m in machines %}
+                    {% if m.machine_type==m.machine_type.victim_attacker %}
+
+                      <ul class="fa-ul">
+                        <li>
+                          <span class="fa-li">
+                            <i class="fas fa-desktop"></i>
+                          </span>
+                          <a href="#configureModal" data-toggle="modal" data-target="#configureModal">{{m.name}}</a>
+                        </li>
+                      </ul>
+                    {% endif %}
+                  {% endfor %}
+                  {% endif %}
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-around buttons-row">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#importFileModal">
+        <i class="fas fa-file-import"></i> Import
+      </button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileSelectModal">
+        <i class="fa fa-file"></i> Files
+      </button>
+      <button class="btn btn-primary" data-toggle="modal" {% if scenario %} onclick="window.location.href='{{ url_for('configure', id=scenario.id) }}';" {% else %} disabled {% endif %}>
+        <i class="fa fa-cog"></i> Configure
+      </button>
+      <button disabled class="btn btn-primary" {% if not scenario %}disabled{% endif %}>
+        <i class="fa fa-database"></i> Data
+      </button>
+      <button class="btn btn-primary" {% if scenario %} onclick="window.location.href='{{ url_for('simple_network_setup', id=scenario.id) }}';" {% else %} disabled {% endif %}>
+        <i class="fa fa-running"></i> Run
+      </button>
+      <button class="btn btn-primary" {% if scenario %} onclick="window.location.href='{{ url_for('scenario_export', id=scenario.id) }}';" {% else %} disabled {% endif %}>
+         <i class="fa fa-file-export"></i> Export
+      </button>
+      <button class="btn btn-primary" {% if scenario %} onclick="window.location.href='{{ url_for('edit_scenario', id=scenario.id) }}';" {% else %} disabled {% endif %}>
+        <i class="fa fa-edit"></i> Edit
+      </button>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal" {% if not scenario %}disabled{% endif %}>
+        <i class="fa fa-times"></i> Delete
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+{% include "modals/uploadFile.html" %}
+{% include "modals/importScenario.html" %}
+{% include "modals/viewFiles.html" %}
+{% include "modals/deleteScenario.html" %}
+
+<script>
+  $(document).ready(function() {
+    //var id = window.location.pathname;
+    //$('div.list-group a[href="' + id + '"]').addClass('active').addClass('active-color');
+  });
+</script>
+
+{% endblock content %}

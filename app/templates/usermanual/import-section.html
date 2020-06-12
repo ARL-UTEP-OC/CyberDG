@@ -1,0 +1,49 @@
+<style>
+  .image7 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 400px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  </style>
+
+<!--Import-->
+<div class="tab-pane fade" id="ImportSteps">
+  <div class="row text-white">
+    <div class="col-11">
+      <h2 class="display-4 text-white"> Import </h2>
+      <br>
+      <p class="lead text-white mb-0">
+        The Import button takes a ZIP file containing JSON files with previously
+        created scenario information, as well as any files that are used in it. </p>
+      <div class="separator"></div>
+      <p class="lead"> To import a scenario follow the instructions below: </p>
+      <p>(From the Landing Page Select the Import Button)</p>
+      <p>Once the Import button is selected you will be prompted to fill
+        in the following options:</p>
+        <br>
+        <img class="image7" src="{{ url_for('static', filename='imgManual/importScenario.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}"  >
+        <br>
+      <ul>
+        <li>Scenario Name:
+          <ul>
+            <li>Gives the user the option to rename the scenario they wish to import. </li>
+          </ul>
+        </li>
+        <br>
+        <li>Browse:</li>
+        <ul>
+          <li>Allows the user to select the scenario they wish to import from their
+          computers' local directory or external devices directory.</li>
+        </ul>
+        <br>
+        <li> To finalize the scenario import, select the Import button.</li>
+        <br>
+        <li>Once you have selected the Import button, The scenario is displayed in the Available Scenarios list tab on the Landing Page. </li>
+      </ul>
+    </div>
+  </div>
+  </div>

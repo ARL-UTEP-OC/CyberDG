@@ -1,0 +1,22 @@
+<div id="confirmationModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      {% if scenario %}
+      <div class="modal-header">
+        <h5 id="myModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete scenario {{scenario.name}} </p>
+      </div>
+      <div class="modal-footer">
+        <form class="" action="{{url_for('scenario_delete')}}" method="post">
+          <input type="hidden" name="scenario_id" value="{{scenario.id}}">
+          <button type="submit" class="btn btn-secondary">Confirm</button>
+        </form>
+        <button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

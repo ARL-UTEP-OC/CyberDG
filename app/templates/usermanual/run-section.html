@@ -1,0 +1,300 @@
+<style>
+  .image13 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 700px;
+    height: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image14 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image15 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 700px;
+    height: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image16 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image19 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 700px;
+    height: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<!--Run-->
+<div class="tab-pane fade" id="RunSteps">
+  <div class="row text-white">
+    <div class="col-11">
+      <h2 class="display-4 text-white"> Run </h2>
+      <br>
+      <p class="text-white mb-0">
+        The Run screen allows for network setup, for which a static IP Address is assigned
+        by default but can be configured to the user's convenience.
+        There are three types of supported networks: Default Internal Network, NAT Network and Named Internal Network.
+        Internal networks can be named by the user.
+      </p>
+      <div class="separator"></div>
+      <p class="lead"> To run a scenario follow the instructions below: </p>
+      <p>(From the Landing Page select the Run button)</p>
+      <p>Once the Run button is selected you will view the network setup screen. This section includes the following options. </p>
+      <br>
+      <img class="image13" src="{{ url_for('static', filename='imgManual/networkSetup.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+      <br>
+      <ul>
+        <li>Network Setup Screen</li>
+        <ul>
+          <li>Main Section Displays:</li>
+          <ul>
+            <li>Machine Name</li>
+          </ul>
+          <ul>
+            <li>Network Name</li>
+          </ul>
+          <ul>
+            <li>IP Address</li>
+          </ul>
+          <br>
+          <div class="row text-white">
+            <div class="col-lg-5">
+              <br>
+              <img class="image14" src="{{ url_for('static', filename='imgManual/networkEdit.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+              <br>
+            </div>
+
+            <div class="col-lg-7">
+              <ul>
+                <li>Edit:</li>
+                <ul>
+                  <li>Network Type:</li>
+                  <ul>
+                    <li> This option allows the user to edit the type of network to use in that specific machine,
+                      the options are: NAT Network, Default Internal Network, Named Internal Network.</li>
+                  </ul>
+                </ul>
+                <ul>
+                  <br>
+                  <li>Machine IP:</li>
+                  <ul>
+                    <li>This option allows the user to view and change the machines IP address. Although
+                      editing the machine's IP address should be done with great caution.</li>
+                  </ul>
+                </ul>
+                <br>
+                <li>Cancel:</li>
+                <ul>
+                  <li>Allows the user to return to the network setup page without saving progress.</li>
+                </ul>
+                <li>Save:</li>
+                <ul>
+                  <li>Allows the user to save the network changes made to the VM.</li>
+                </ul>
+              </ul>
+            </div>
+          </div>
+          <br>
+          <li>Back:</li>
+          <ul>
+            <li>The Back button will take the user back to the configuration page.</li>
+          </ul>
+          <br>
+          <li> Exit:</li>
+          <ul>
+            <li>The Exit button on the top right corner will transport the user back to the Landing Page.</li>
+          </ul>
+          <br>
+          <li>Next:</li>
+          <ul>
+            <li>The Next button will take the user to the Build Screen.</li>
+          </ul>
+
+        </ul>
+        <br>
+        <br>
+        <img class="image15" src="{{ url_for('static', filename='imgManual/BuildScreen.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+        <br>
+
+        <li>Build Screen</li>
+        <ul>
+          <li>This Section Displays:</li>
+          <ul>
+            <li>Machine Name:</li>
+            <li>The name of the current machine that is displayed</li>
+          </ul>
+          <br>
+          <ul>
+            <li> VM OS:</li>
+            <li> The operating system the machine is currently running.</li>
+          </ul>
+          <br>
+          <ul>
+            <li> Files:</li>
+            <li> The files added to the machine.</li>
+          </ul>
+          <br>
+          <ul>
+            <li>Commands:</li>
+            <ul>
+              <li>The commands (if any) that have been pre-determined by the user to run
+                on the machine.</li>
+            </ul>
+          </ul>
+          <br>
+          <ul>
+            <li>RDP to (Machine Name):</li>
+            <ul>
+              <li>Allows the user to RDP into the machine that is currently selected.</li>
+              <li>*Note: Selecting this option directly opens the machine in a new tab allowing for the user
+                to view and manipulate the VM as desired.*</li>
+            </ul>
+            <br>
+            <div class="row text-white">
+              <div class="col-lg-5">
+                <br>
+                <img class="image16" src="{{ url_for('static', filename='imgManual/saveBaseMachine.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+                <br>
+              </div>
+
+              <div class="col-lg-7">
+                <br>
+                <li>Save as Base Machine:</li>
+                <ul>
+                  <li>Allows the user to save the current machine as a base machine for
+                    later use in other scenarios.</li>
+                  <li>*Note: Selecting this option will take you to a screen to rename the machine for the
+                    use of a base machine*</li>
+                </ul>
+              </div>
+            </div>
+          </ul>
+
+
+          <br>
+          <li>Back:</li>
+          <ul>
+            <li>The Back button will take the user back to the Network page.</li>
+          </ul>
+          <br>
+          <li> Exit:</li>
+          <ul>
+            <li>The Exit button on the top right corner will transport the user back to the Landing Page.</li>
+          </ul>
+          <br>
+          <li>Run:</li>
+          <ul>
+            <li>The Run button will take the user to the next screen entitled Running Page.</li>
+          </ul>
+        </ul>
+        <br>
+        <br>
+        <img class="image19" src="{{ url_for('static', filename='imgManual/runningScreen.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+        <br>
+        <li>Running Screen</li>
+        <ul>
+          <li>This Section Displays:</li>
+          <ul>
+            <li>Machine Name:</li>
+            <ul><li>The name of the current machine that is displayed</li></ul>
+          </ul>
+          <br>
+          <ul>
+            <li> VM OS:</li>
+            <ul><li> The operating system the machine is currently running.</li></ul>
+          </ul>
+          <br>
+          <ul>
+            <li> Files:</li>
+            <ul><li> The files added to the machine.</li></ul>
+          </ul>
+          <br>
+          <ul>
+            <li>Collectors:</li>
+            <ul>
+              <li>The collectors currently running on the VM(s).</li>
+            </ul>
+            <br>
+            <li>RDP:</li>
+            <ul>
+              <li>Allows the user to RDP into the machine that is currently selected.</li>
+              <li>*Note: Selecting this option directly opens the machine in a new tab allowing for the user
+                to view and manipulate the VM as desired.*</li>
+            </ul>
+            <br>
+          </ul>
+          <h5><b>Second Row of Buttons Contain the Following Options:</b></h5>
+          <ul>
+            <li>View/Export Collector Logs:</li>
+            <ul>
+              <li><b>*This option is currently Unavailable*</b>
+              </li>
+            </ul>
+            <br>
+            <li>Re-Run Scenario: </li>
+            <ul>
+              <li>This option allows the user to re-run the scenario multiple times.</li>
+              <ul>
+              </ul>
+              <br>
+              <li>Reconfigure Scenario: </li>
+              <ul>
+                <li><b>*This option is currently Unavailable*</b>
+                </li>
+              </ul>
+            </ul>
+            <br>
+            <h5><b>Other Options On This Screen Include the Following:</b></h5>
+            <li>Back:</li>
+            <ul>
+              <li>The Back button will take the user back to the Build page.</li>
+            </ul>
+            <br>
+            <li> Stop:</li>
+            <ul>
+              <li>The Stop button will stop the VM(s) from running, allowing for the VM(s) to completely power off.</li>
+            </ul>
+            <br>
+            <li>Exit:</li>
+            <ul>
+              <li>The Exit button on the top right corner will allow you to exit the Running page and
+                transport the user back to the Landing Page.</li>
+            </ul>
+
+          </ul>
+        </ul>
+        <!--main list-->
+    </div>
+  </div>
+</div>

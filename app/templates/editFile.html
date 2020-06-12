@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container landing-page">
+  <div class="card my-card">
+
+    <div class="row" style="padding-left:15px;">
+      <h2>Edit {{file.name}}</h2>
+    </div>
+    <div class="row" style="padding-left:15px;">
+      <form class="" method="POST">
+        <div class="form-group">
+          <textarea name="file_text" rows="20" cols="100">{{content}}</textarea>
+        </div>
+        <div class="justify-right">
+          <button type="button" onclick="window.location.href='{{url_for('index')}}';" class="btn btn-danger"><i class="far fa-window-close"></i> Cancel </button>
+          <button type="submit" class="btn btn-success pull-right"><i class="far fa-file"></i> Save </button>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+
+</div>]]
+
+
+{% endblock content %}

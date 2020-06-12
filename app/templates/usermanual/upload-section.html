@@ -1,0 +1,86 @@
+<style>
+  .image5 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 350px;
+  }
+  .image6 {
+    border: 1px solid #ddd;
+    float: right;
+    border-radius: 4px;
+    padding: 5px;
+    width: 350px;
+  }
+  </style>
+
+
+<!--Upload Files-->
+<div class="tab-pane fade" id="uploadSteps">
+  <div class="row text-white">
+    <div class="col-11">
+      <h2 class="display-4 text-white"> Upload Files </h2>
+      <br>
+      <p class="text-white mb-0">
+        Files that are to be used as Exploits or Vulnerabilities can be uploaded to the system
+        in order to saved for future use, as well as prevent file duplication through hashing.
+        Files are identified with a name, a description and an optional CVE Number. </p>
+      <div class="separator"></div>
+      <p class="lead"> To upload a file follow the instructions below: </p>
+      <p>(From the Landing Page Select the Upload Button)</p>
+      <p>Once the Upload button is selected you will be prompted to fill
+        in the following options:</p>
+        <br>
+        <img class="image5" src="{{ url_for('static', filename='imgManual/uploadScreenBlank.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}"  width=500 height=500>
+        <img class="image6" src="{{ url_for('static', filename='imgManual/uploadFilledOut.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}"  width=500 height=500>
+        <br>
+        <br>
+        <p align="center"><small> The image on the left shows the blank Upload modal. The image on the right shows a example of an acceptable input.
+          </small></p>
+          <p align="center" style="color:#E74C3C" ;><small>(*Note: 'Names can only contain letters, numbers, and hyphens.'*)</small></p>
+        <br>
+        
+      <ul>
+        <li>Upload Type:
+          <ul>
+            <li>The user will select what type of file they wish to upload, whether it is a Vulnerability file or an Exploit file.</li>
+            <li style="color:#E74C3C" ;>*Note: Selecting an upload type is required in order to upload a new file.*</li>
+          </ul>
+        </li>
+        <br>
+        <li>Upload Name:
+          <ul>
+            <li>Enter the desired name of the file you wish to upload. </li>
+            <li style="color:#E74C3C" ;>*Note: Adding a name is required in order to upload a new file.*</li>
+          </ul>
+        </li>
+        <br>
+        <li>File Description:</li>
+        <ul>
+          <li>This section allows for a small description of the file that will
+            be displayed on file window from the available files list.</li>
+        </ul>
+        <br>
+        <li>CVE Number: <small>*This field is not required*</small></li>
+        <ul>
+          <li>The CVE ID numbers are used by cybersecurity product/service vendors and researchers
+            as a standard method for identifying vulnerabilities and for cross-linking with other
+            repositories that also use CVE ID numbers.</li>
+          <li>The CVE ID numbers can be found on websites such as <a href="https://www.exploit-db.com/" target="_blank">Exploit Database</a>
+            or the <a href="https://nvd.nist.gov/" target="_blank">National Vulnerability Database</a> to name a few. </li>
+        </ul>
+        <br>
+        <li>Browse:</li>
+        <ul>
+          <li>Selecting this button allows the user to select the desired file they wish to upload from their
+            computer's local directory or other external devices directory.</li>
+        </ul>
+        <br>
+        <li> To finalize the file upload, select Upload.</li>
+        <br>
+        <li>Once you have selected the Upload button, the user will be transferred back to the Landing Page.
+          The file will be uploaded to the system and will be displayed in the Files section. </li>
+      </ul>
+    </div>
+  </div>
+  </div>

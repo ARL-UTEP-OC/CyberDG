@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!--START maincard -->
+  <div class="container" id="maincard">
+    <div class="full-width-div">
+      <header>
+        <div><button class="btn btn-primary" id="button-back" type="button"><i class="fas fa-arrow-left"></i> Back</button></div>
+      </header>
+      <div><h1 id="Heading1">VM in Run:"Run Name"<strong></strong></h1></div>
+      <!--START Main-content-->
+      <div class="card" id="Main-content">
+        <!-- START VM Tab Column
+        ***LOOKING INTO HOW TO CONNECT TO BACKEND TO PULL CURRENT RUNS OF THAT Scenario - WILL CREATE TEST SCENARIO IN DATABASE TO TEST-->
+        <div class="col" id="vmtabscolumn">
+          <div class="vmtab">
+            <button class="vmtablinks" onclick="openVM(event, 'vm1')"><h4><strong>VM 1</strong></h4></button>
+            <button class="vmtablinks" onclick="openVM(event, 'vm2')"><h4><strong>VM 2</strong></h4></button>
+            <button class="vmtablinks" onclick="openVM(event, 'vm3')"><h4><strong>VM 3</strong></button>
+            </div>
+            <!-- START VM 1 Tab-->
+            <div id="vm1" class="vmtabcontent">
+              <div class="row">
+                <div class="flex-container">
+                  <div>
+                    <div><LI><strong>VM Advanced Preview<strong></LI></div>
+                      <div id="image"><img id="exploitexampleimg" src="exploitexp.jpg" /></div>
+                    </div>
+                    <div id="buttons">
+                      <button class="btn btn-primary" id="button-closeview" type="button">Close Current View</button>
+                      <button class="btn btn-primary" id="button-editvm" type="button">Edit VM</button>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- END VM 1 Tab -->
+
+              <!-- START VM 2 Tab-->
+              <div id="vm2" class="vmtabcontent">
+                <h7> TEST CONTENT 2</h7>
+              </div> <!-- END VM 2 Tab
+
+              <!-- START VM 3 Tab-->
+              <div id="vm3" class="vmtabcontent">
+                <h7> TEST CONTENT 3</h7>
+              </div> <!-- END VM 3 Tab -->
+            </div> <!-- END VM Tab Column -->
+          </div> <!--END Main-content-->
+        </div>
+      </div> <!--END maincard-->
+
+
+      <!-- START Script for VM Tabs -->
+      <script>
+        function openVM(evt, vmName) {
+          var i, vmtabcontent, vmtablinks;
+          vmtabcontent = document.getElementsByClassName("vmtabcontent");
+          for (i = 0; i < vmtabcontent.length; i++) {
+            vmtabcontent[i].style.display = "none";
+          }
+          vmtablinks = document.getElementsByClassName("vmtablinks");
+          for (i = 0; i < vmtablinks.length; i++) {
+            vmtablinks[i].className = vmtablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(vmName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+      </script>
+      <!-- END Script for Run Tabs -->
+
+    {% endblock content %}

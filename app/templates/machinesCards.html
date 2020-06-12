@@ -1,0 +1,138 @@
+<!--Trying to get the cards on a seperate file-->
+
+<!--Machine Cards-->
+
+<div class="row justify-content-center overflow-auto">
+
+  {% if machines|length == 0 %}
+    <h5 style="margin-top: 15px;"> No machines added </h5>
+  {% endif %}
+    <!--Machines-->
+    <div class="card-deck " style=" margin-top: 10px; max-height: 575px; margin-bottom: 15px">
+      <div class="list-group" id="myTab" role="tablist">
+
+        <div class="card-deck vm-card">
+          <!--To iterate for each machine in a given scenario-->
+          {% for machine in machines %}
+          <div class="col" style="padding:10px;">
+            <div class="card border-dark" style="width: 18rem;">
+              <img class="card-img-top" {% if machine.machine_type == machine.machine_type.attacker %} src="{{ url_for('static', filename='img/Malware.jpg') }}" {% elif machine.machine_type == machine.machine_type.victim %}
+                src="{{ url_for('static', filename='img/Victim.jpg') }}" {% elif machine.machine_type == machine.machine_type.base %} src="{{ url_for('static', filename='img/Base.jpg') }}"
+                {% elif machine.machine_type == machine.machine_type.victim_attacker %} src="{{ url_for('static', filename='img/Victware.jpg') }}" {%endif%} alt="Card image cap" style="height: 15rem">
+              <div class="card-body">
+                <h4 class="card-title">{{machine.name}}</h4>
+                <p class="text-left">OS: {{machine.os}}</p>
+                <p class="text-left">Network: {% if machine.network_type.name == 'named_network' %}{{machine.network_name}}
+                  {% elif machine.network_type.value == 'Default Internal Network' %}{{scenario.name}}{{scenario.id}}
+                  {% else %}{{machine.network_type.value}}{% endif %}
+                </p>
+                <p class="text-left">Files: {% if machine.file %}
+                  {% for f in machine.file %}
+                  {{f.name}}
+                  {% endfor %}
+                  {% else %}
+                  None
+                  {% endif %}</p>
+                <p class="text-left">Command Line Prompt(s): {{machine.cmd_line}}</p>
+                <p class="text-left">Execution Order: {{machine.cmd_order}}</p>
+                <button type="button" class="btn btn-outline-primary active" onclick="window.location.href='{{ url_for('edit_machine', scenario_id=scenario.id, machine_id=machine.id) }}';">
+                  Edit
+                </button>
+                <button type="button" class="btn btn-outline-secondary active" href="#vmInfo" data-toggle="modal" data-target="#vmInfo{{machine.id}}">Info</button>
+                <button type="button" class="btn btn-outline-danger float-right" data-toggle="modal" data-target="#deleteMachineModal{{machine.id}}">Delete</button>
+              </div>
+            </div>
+          </div>
+
+          <!--Delete Confirmation Modal -->
+          <div class="modal fade" id="deleteMachineModal{{machine.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteMachineModalLabel{{machine.id}}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <form class="" action="{{url_for('machine_delete')}}" method="post">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteMachineModalLabel{{machine.id}}">Delete {{machine.name}}?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete <strong>{{machine.name}}?</strong> This cannot be undone.
+                    <input type="hidden" name="machine_id" value="{{machine.id}}">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="far fa-window-close"></i> Cancel</button>
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Delete Machine</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!--Machine Info Modal-->
+          <div class="modal fade" id="vmInfo{{machine.id}}">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Machine Information <i class="fas fa-laptop-code"></i></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <!--Start VM info-->
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-10">
+
+                      <p class="text-left">ID: {{machine.id}}</p>
+                      <p class="text-left">Created: {{machine.created}}</p>
+                      <p class="text-left">Name: {{machine.name}}</p>
+                      <p class="text-left">Machine IP: {{machine.machine_ip}}</p>
+                      <p class="text-left">RDP IP: {{machine.rdp_ip}}</p>
+                      <p class="text-left">RDP Port: {{machine.rdp_port}}</p>
+                      <p class="text-left">Machine Username: {{machine.machine_username}}</p>
+                      <p class="text-left">Machine Password: {{machine.machine_password}}</p>
+                      <p class="text-left">Machine Type: {{machine.machine_type.value}}</p>
+                      <p class="text-left">Machine: Processors: {{machine.processors}}</p>
+                      <p class="text-left">Machine Memory: {{machine.memory}}</p>
+                      <p class="text-left">Machine Network Type: {{machine.network_type.value}}
+                        {% if machine.network_type.name == 'named_network' %}
+                        <p class="text-left">Machine Network Name: {{machine.network_name}}
+                          {% endif %}
+                          <p class="text-left">Machine Command Line Prompt(s): {{machine.cmd_line}}</p>
+                          <p class="text-left">Machine Command Line Execution Order: {{machine.cmd_order}}</p>
+                          <p class="text-left">Machine Scenario ID: {{machine.scenario_id}}</p>
+                          <p class="text-left">Machine OS ID: {{machine.os_id}}</p>
+                          <p class="text-left">Machine Configuration: {{machine.config}}</p>
+                          <p class="text-left">Machine File(s): {% if machine.file %}
+                            {% for f in machine.file %}
+                            {{f.name}}
+                            {% endfor %}
+                            {% else %}
+                            None
+                            {% endif %}</p>
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="far fa-window-close"></i> Cancel </button>
+                  <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Delete Machine </button>
+                </div>
+              </div>
+            </div>
+            <!--End Machine Info Modal-->
+          </div>
+          {% endfor %}
+
+          <!--Close card-->
+        </div>
+
+        <!--Close scroll-->
+      </div>
+    </div>
+    <!--Close whole card-->
+
+</div>

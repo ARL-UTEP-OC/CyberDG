@@ -1,0 +1,323 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            {% if machine %}
+                <h5 class="modal-title" id="configureModalLabel">Edit VM</h5>
+            {% else %}
+                <h5 class="modal-title" id="configureModalLabel">Create VM</h5>
+            {% endif %}
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Start of form -->
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="machine-name">Machine Name:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="machine-name"
+                                name="name"
+                                placeholder="Machine x"
+                                required
+                                {% if machine %}
+                                    value="{{machine.name}}"
+                                {% elif form and form.name.data %}
+                                    value="{{form.name.data}}"
+                                {% endif %}>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputType">Type:</label>
+                                <select name="machine_type" class="form-control">
+                                    {% for machine_type in machine_types %}
+                                        <option
+                                            value="{{machine_type.name}}"
+                                            {% if machine and machine.machine_type.name == machine_type.name %}
+                                                selected
+                                            {% elif form and form.machine_type.data and form.machine_type.data == machine_type.name %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            {{machine_type.value}}
+                                        </option>
+                                    {% endfor %}
+
+                                </select>
+
+
+
+                            </div>
+                            <!-- <div class="form-group col-md-6">
+                                <label for="create-from-existing-vm">Create From Existing VM:</label>
+                                <input type="file" class="form-control-file" id="create-from-existing-vm">
+                            </div> -->
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>VM OS:</label>
+                                <select name="vm_os" class="form-control">
+                                    {% for os in os_list %}
+                                        {% if not os.is_base %}
+                                            <option
+                                                value="{{os.id}}"
+                                                {% if machine and machine.os.id == os.id %}
+                                                    selected
+                                                {% elif form and form.vm_os.data and form.vm_os.data == os.id %}
+                                                    selected
+                                                {% endif %}
+                                            >
+                                                {{os.name}}
+                                            </option>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <option disabled>──────────</option>
+                                    {% for os in os_list %}
+                                        {% if os.is_base %}
+                                            <option
+                                                value="{{os.id}}"
+                                                {% if machine and machine.os.id == os.id %}
+                                                    selected
+                                                {% elif form and form.vm_os.data and form.vm_os.data == os.id %}
+                                                    selected
+                                                {% endif %}
+                                            >
+                                                {{os.name}}
+                                            </option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                          <label for="exploitSelected"> Exploits: </label>
+                          <div class="items">
+                            <select name="exploits" class="form-control selectpicker" multiple>
+                              {% for e in exploits %}
+                              <option value="{{e.name}}"
+                              {% if machine %}
+                                {% for f in machine.file %}
+                                  {% if f.name == e.name %} selected {% endif %}
+                                {% endfor %}
+                              {% elif form and form.exploits.data %}
+                                {% for ef in form.exploits.data %}
+                                  {% if ef == e.name %} selected {% endif %}
+                                {% endfor %}
+                              {% endif %}
+                              >{{e.name}}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                          <label for="vulnSelected"> Vulnerabilities: </label>
+                          <div class="items">
+                            <select name="vulns" class="form-control selectpicker" multiple>
+                              {% for v in vulns %}
+                              <option value="{{v.name}}"
+                              {% if machine %}
+                                {% for f in machine.file %}
+                                  {% if f.name == v.name %} selected {% endif %}
+                                {% endfor %}
+                              {% elif form and form.vulns.data %}
+                                {% for ef in form.vulns.data %}
+                                  {% if ef == v.name %} selected {% endif %}
+                                {% endfor %}
+                              {% endif %}> {{v.name}}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="text-center">
+                          <button type="button" class="btn" data-toggle="modal" data-target="#uploadModal"><i class="fas fa-plus"></i> Add File(s) </button>
+                        </div>
+
+                        <hr>
+                        <p>Base Memory</p>
+                        <div class="slidecontainer" id="base-memory">
+                            <span class=" mr-2 mt-1">4Mb</span>
+                            <input
+                                class="border-0"
+                                type="range"
+                                min="4"
+                                max="16384"
+                                id="memoryRange"
+                                name="memory"
+                                {% if machine %}
+                                    value="{{machine.memory}}"
+                                {% elif form and form.memory.data %}
+                                    value="{{form.memory.data}}"
+                                {% else %}
+                                    value="1024"
+                                {% endif %}
+                            >
+                            <span class="ml-2 mt-1">16384Mb</span>
+                            <p class="font-weight-bold">Memory: <span id="b-memory"></span> Mb</p>
+                        </div>
+                        <p>Processor</p>
+                        <div class="slidecontainer" id="processor">
+                            <span class=" mr-2 mt-1">1CPU</span>
+                            <input
+                                class="border-0"
+                                type="range"
+                                min="1"
+                                max="4"
+                                id="processorRange"
+                                name="processors"
+                                {% if machine %}
+                                    value="{{machine.processors}}"
+                                {% elif form and form.processors.data %}
+                                    value="{{form.processors.data}}"
+                                {% else %}
+                                    value="2"
+                                {% endif %}
+                            >
+                            <span class="ml-2 mt-1">4CPU</span>
+                            <p class="font-weight-bold">Processor: <span id="proces"></span></p>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputType">Network Type:</label>
+                                <select name="network_type" class="form-control" onchange="enableInput(this);">
+                                    {% for network_type in network_types %}
+                                        <option
+                                            value="{{network_type.name}}"
+                                            id="network-type-{{network_type.name}}"
+                                            {% if machine and machine.network_type.name == network_type.name %}
+                                                selected
+                                            {% elif form and form.network_type.data and form.network_type.data == network_type.name %}
+                                                selected
+                                            {% elif network_type.name == 'internal' %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            {{network_type.value}}
+                                        </option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </div>
+                        <div
+                            class="form-row"
+                            id="named-network-name"
+                            {% if machine and machine.network_type.name == 'named_network' %}
+                                style="display: block;"
+                            {% elif form and form.network_type.data and form.network_type.data == 'named_network' %}
+                                style="display: block;"
+                            {% else %}
+                                style="display: none;"
+                            {% endif %}
+                        >
+                            <div class="form-group col-md-6">
+                                <label for="inputType">Network Name</label>
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="network_name"
+                                    placeholder="Network name"
+                                    {% if machine and machine.network_name %}
+                                        value="{{machine.network_name}}"
+                                    {% elif form and form.network_name.data %}
+                                        value="{{form.network_name.data}}"
+                                    {% endif %}
+                                >
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-row">
+                            <p>To run a command on your file, use "shared/{filename}"</p>
+                            <p>Run multiple commands using && in between each command.</p>
+                            <div class="form-group col-md-6">
+                                <label for="command-line">Command Line Prompt(s):</label>
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    id="command-line"
+                                    name="cmd_line"
+                                    placeholder="python example.py"
+                                    {% if machine and machine.cmd_line %}
+                                        value="{{machine.cmd_line}}"
+                                    {% elif form and form.cmd_line.data %}
+                                        value="{{form.cmd_line.data}}"
+                                    {% endif %}>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="command-line">Command Line Order:</label>
+                                <input
+                                    class="form-control"
+                                    type="number"
+                                    id="command-order"
+                                    name="cmd_order"
+                                    placeholder="Execution order (Integers Only):"
+                                    {% if machine %}
+                                        value="{{machine.cmd_order}}"
+                                    {% elif form and form.cmd_line.data %}
+                                        value="{{form.cmd_order.data}}"
+                                    {% endif %}>
+                            </div>
+                        </div>
+
+                        {% if machine %}
+                            <input type="hidden" name="id" value="{{machine.id}}">
+                        {% elif form and form.id %}
+                            <input type="hidden" name="id" value="{{form.id.data}}">
+                        {% endif %}
+                </div>
+            </div>
+        </div><!-- Modal Body End -->
+        <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-primary"
+              onclick="window.location.href='{{ url_for('configure', id=scenario_id) }}';">
+              <i class="fas fa-arrow-left"></i> Back </button>
+            <button type="submit" class="btn btn-primary"><i class="far fa-file"></i> Save </button>
+        </div><!-- Modal Footer End -->
+        </form>
+    </div><!-- Modal Content End -->
+</div><!-- Modal Dialog End -->
+
+{% include "modals/uploadFile.html" %}
+
+<script>
+    var slider = document.getElementById("memoryRange");
+    var output = document.getElementById("b-memory");
+    var slider2 = document.getElementById("processorRange");
+    var output2 = document.getElementById("proces");
+    output.innerHTML = slider.value; // Display the default slider value
+    output2.innerHTML = slider2.value; // Display the default slider value
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+    slider2.oninput = function() {
+        output2.innerHTML = this.value;
+    }
+
+    function enableInput(context) {
+        if (context.value == "named_network") {
+            document.getElementById("named-network-name").style.display = "block";
+        }
+        else {
+            document.getElementById("named-network-name").style.display = "none";
+        }
+    }
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+<style>
+  .image4 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 950px;
+    height:500px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  </style>
+<!--list Scenarios-->
+  <div class="tab-pane fade" id="listScenario">
+    <div class="row text-white">
+      <div class="col-11">
+        <h2 class="display-4 text-white"> List of Scenarios </h2>
+        <br>
+        <p class="lead text-white mb-0">
+          The list of currently created scenarios can be selected here in order to be customized further and ran on the system. </p>
+        <div class="separator"></div>
+        <p class="lead"> To select a scenario and display its description follow the steps bellow: </p>
+        <p>(On the Landing Page the Available Scenarios list is viewable. Each Scenario can be selected to
+          view various details about the selected scenario.)</p>
+        <p>Once the scenario is selected, on the right side the following information will be displayed:</p>
+        <br>
+        <img class="image4" src="{{ url_for('static', filename='imgManual/landingPageFill2.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}"  width=500 height=500 >
+        <br>
+        <ul>
+          <li>Scenario Name:
+            <ul>
+              <li>Name given to the scenario.</li>
+            </ul>
+          </li>
+          <br>
+          <li>Scenario Description:
+            <ul>
+              <li>Displays the scenario description previously determined
+                by the user in either new scenario or upload sections.</li>
+            </ul>
+          </li>
+          <br>
+          <li>Files:
+            <ul>
+              <li>Displays the file name(s) that are currently associated with the selected scenario.</li>
+            </ul>
+          </li>
+          <br>
+          <li>Machines associated with the selected scenario:</li>
+          <ul>
+            <li>This section displays the machines associated with the scenario, the following information is available:</li>
+            <ul>
+              <li>Machine Name</li>
+              <li>Machine Type</li>
+            </ul>
+          </ul>
+      </div>
+    </div>
+    </div>

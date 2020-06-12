@@ -1,0 +1,28 @@
+<div class="modal fade" id="rdpModal" tabindex="-1" role="dialog" aria-labelledby="rdpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rdpModalLabel">Start RDP Connection</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    To start an RDP connection, you must first login and then select the
+                    machine you would like to connect to.  Your login details are:
+                </p>
+                {% if scenario %}
+                    <span><strong>Username:</strong> {{guacUser.guac_username}}</span><br />
+                    <span><strong>Password:</strong> {{guacUser.guac_password}}</span>
+                {% endif %}
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" onclick="window.open('http://localhost:8080/guacamole/#/','_blank')" class="btn btn-primary">Continue to RDP</button>
+            </div>
+        </div>
+    </div>
+</div>

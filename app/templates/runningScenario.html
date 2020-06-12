@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container landing-page">
+  <div class="card my-card">
+    <div class="col" align="right">
+      <button class="btn btn-primary" onclick="window.location.href='{{ url_for('scenario', id=scenario.id) }}';">
+        Exit
+      </button>
+    </div>
+    <div>
+      <h2 class="text-center">Running - {{scenario.name}}</h2>
+    </div>
+    <div class="card" id="Main-content">
+      <div class="row">
+        <!-- START Run Tabs Column
+          ***LOOKING INTO HOW TO CONNECT TO BACKEND TO PULL CURRENT RUNS OF THAT Scenario - WILL CREATE TEST SCENARIO IN DATABASE TO TEST-->
+        <div class="col" id="runtabscolumn">
+          <!-- START Run Tab-->
+          <div class="runtabcontent">
+            <!-- START Row for VMs Column -->
+            <div class="row">
+              <div class="col">
+                <div class="vmtab" id="vmtabs">
+                  {% for machine in machines %}
+                  <button class="vmtablinks" onclick="openVM(event, 'vm.{{machine.id}}')" id="defaultOpen"><strong>{{machine.name}}</strong></button>
+                  {% endfor %}
+                </div>
+
+                {% for machine in machines %}
+                <div id="vm.{{machine.id}}" class="vmtabcontent">
+                  <!--START for 2 Column Layout inside the VM Tab-->
+                  <div class="row justify-content-around">
+                    <!-- Inner Column 1 (Status Info)-->
+                    <div class="col-12" align="center" id="innercol1">
+                      <div class="col" style="padding:10px;">
+                        <div class="card border-dark" style="width: 18rem;">
+                          <img class="card-img-top" {% if machine.machine_type == machine.machine_type.attacker %} src="{{ url_for('static', filename='img/Malware.jpg') }}" {% elif machine.machine_type == machine.machine_type.victim %}
+                            src="{{ url_for('static', filename='img/Victim.jpg') }}" {% elif machine.machine_type == machine.machine_type.base %} src="{{ url_for('static', filename='img/Base.jpg') }}"
+                            {% elif machine.machine_type == machine.machine_type.victim_attacker %} src="{{ url_for('static', filename='img/Victware.jpg') }}" {%endif%} alt="Card image cap" style="height: 12rem">
+                          <div class="card-body">
+                            <h4 class="card-title">{{machine.name}}</h4>
+                            <p class="text-left">OS: {{machine.os}}</p>
+                            <p class="text-left">Files: {% if machine.file %}
+                              {% for f in machine.file %}
+                              {{f.name}}
+                              {% endfor %}
+                              {% else %}
+                              None
+                              {% endif %}</p>
+                            <p class="text-left">Collector(s): tshark</p>
+                            <button class="btn btn-primary" id="button-remotevm" type="button" onclick="window.open('http://localhost:8080/guacamole/#/client/{{machine.connection_link}}')">RDP</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--END for 2 Column Layout inside the VM Tab-->
+
+                {% endfor %}
+
+              </div>
+            </div> <!-- END Run 1 Tab-->
+
+
+          </div>
+          <div class="row justify-content-around">
+            <div id="col-bottombuttons">
+              <button type="button" disabled class="btn btn-primary">View/Export Collector Logs</button>
+              <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url_for('run_scenario', id=scenario.id) }}';">Re-Run Scenario</button>
+              <button type="button" disabled class="btn btn-primary">Reconfigure Scenario</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <br>
+    </div> <!-- END Main Card -->
+
+    <div class="row justify-content-around config-row">
+      <div class="col-8">
+        <button class="btn btn-secondary" onclick="window.location.href='{{ url_for('build_scenario', id=scenario.id) }}';">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-danger" onclick="window.location.href='{{ url_for('stop_scenario', id=scenario.id) }}';"><i class="far fa-stop-circle"></i> Stop </button>
+      </div>
+    </div>
+
+    <!-- START Script for VM Tabs -->
+    <script>
+      function openVM(evt, vmName) {
+        var i, vmtabcontent, vmtablinks;
+        vmtabcontent = document.getElementsByClassName("vmtabcontent");
+        for (i = 0; i < vmtabcontent.length; i++) {
+          vmtabcontent[i].style.display = "none";
+        }
+        vmtablinks = document.getElementsByClassName("vmtablinks");
+        for (i = 0; i < vmtablinks.length; i++) {
+          vmtablinks[i].className = vmtablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(vmName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+    </script>
+    <!-- END Script for VM Tabs -->
+  </div>
+</div>
+
+
+
+{% endblock content %}

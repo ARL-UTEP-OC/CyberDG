@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container landing-page">
+    <div class="card my-card">
+
+        <div class="row justify-content-around">
+            <!--Title-->
+            <div class="col-7" align="right">
+                <h3>Advanced - {{scenario.name}}<i class="fa fa-running"></i></h3>
+            </div>
+            <!--Save and Question Buttons
+            <div class="col-2" align="right">
+                <i class="fas fa-question-circle fa-2x"></i> <i class="fas fa-save fa-2x"></i>
+            </div>-->
+        </div>
+
+
+        <!-- Network Elements column. -->
+        <div class="wrapper">
+            <div class="col-main" id="Network-Elements">
+                <div class="card">
+                    <h5 class="card-title">Network Elements</h5>
+                    <!-- TODO: add Network Elements. -->
+                </div>
+            </div>
+
+            <!-- Middle column with Run Screen. -->
+            <div class="col-main" id="Run-Screen">
+                <div class="card">
+                    <div class="card-run">
+                        <div class="row-run-screen">
+                            <!-- Top row of buttons. -->
+                            <div class="col" id="ButtonCol1">
+                                <button class="btn btn-primary" id="Save-Button" type="button">Save</button>
+                                <button class="btn btn-primary" id="Test-Network-Connectivity" type="button">Test
+                                    Network
+                                    Connectivity</button>
+                            </div>
+                        </div>
+                        <div class="row-run-screen" id="Image-Row">
+                            <!-- TODO: Add machine info to screen. -->
+                        </div>
+                        <div class="row-run-screen">
+                            <div class="col" id="ButtonCol2">
+                                <!-- Bottom row of buttons. -->
+                                <button class="btn btn-primary" id="add-VM-Button" type="button">Add VM</button>
+                                <button class="btn btn-primary" id="Run-Button" type="button">Run Scenario</button>
+                                <button class="btn btn-primary" id="Manually-Install-VM-Button" type="button">Manually
+                                    Install VMs</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column with Machine Setup options. -->
+            <div class="col-main" id="Machine-Setup">
+                <div class="card">
+                    <div class="card-machine"><img src="{{ url_for('static', filename='img/VictimIcon.png') }}" />
+                        <div class="row" id="Name-Row">
+                            <div class="col"><strong>Name: VM-B1</strong></div>
+                        </div>
+                        <div class="row" id="OS-Row">
+                            <div class="col"><strong>OS: Windows 10</strong></div>
+                        </div>
+                        <div class="row" id="Vulnerability-Row">
+                            <div class="col"><strong>Vulnerability: p0</strong></div>
+                        </div>
+                        <div class="row" id="Collector-Row">
+                            <div class="col"><strong>Collector: ECELd</strong></div>
+                        </div>
+                        <div class="row" id="Edit-Button-Row">
+                            <div class="col"><button class="btn btn-primary" id="Edit-Machine-Button"
+                                    type="button">Edit</button>
+                                <button class="btn btn-primary" id="Delete-Machine-Button" type="button">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <!--TODO: Code to edit machine IP Address-->
+                    <div class="card-setup" id="IP-Address-Card"><strong>IP Address:</strong><input type="text"
+                            id="IP-Address-Input" /><button class="btn btn-primary" id="Accept-IP-Address"
+                            type="button">+</button></div>
+                    <!--TODO: Code to edit machine Port(s)-->
+                    <div class="card-setup" id="Port-Card"><strong>Port(s):   </strong><input type="text"
+                            id="Port-Input" /><button class="btn btn-primary" id="Accept-Port" type="button">+</button>
+                    </div>
+                    <!--TODO: Code to edit machine Collectors-->
+                    <div class="card-setup" id="Collector-Card"><strong>Collector:</strong>
+                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                aria-expanded="false" type="button">None </button>
+                            <!--TODO: Code to get list of Collectors-->
+                            <div role="menu" class="dropdown-menu"><a role="presentation" class="dropdown-item"
+                                    href="#">First Item</a><a role="presentation" class="dropdown-item" href="#">Second
+                                    Item</a><a role="presentation" class="dropdown-item" href="#">Third Item</a></div>
+                        </div>
+                        <!--TODO: Figure out functionality-->
+                        <div class="form-check"><input type="checkbox" class="form-check-input"
+                                id="formCheck-1" /><label class="form-check-label" for="formCheck-1">Network
+                                Traffic</label></div>
+                        <div class="form-check"><input type="checkbox" class="form-check-input"
+                                id="formCheck-2" /><label class="form-check-label" for="formCheck-2">System Logs</label>
+                        </div>
+                        <div class="form-check"><input type="checkbox" class="form-check-input"
+                                id="formCheck-3" /><label class="form-check-label" for="formCheck-3">API Calls</label>
+                        </div>
+                    </div>
+                    <div class="card-setup" id="Start-Condition-Card"><strong>Start Condition:</strong><input
+                            type="text" id="Start-Condition-Input" /><button class="btn btn-primary"
+                            id="Accept-Start-Condition" type="button">+</button></div>
+                    <div class="card-setup" id="Stop-Condition-Card"><strong>Stop Condition:</strong><input type="text"
+                            id="Stop-Condition-Input" /><button class="btn btn-primary" id="Accept-Stop-Condition"
+                            type="button">+</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

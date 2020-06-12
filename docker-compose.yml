@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+    db:
+        image: postgres
+        volumes:
+            - flask_db:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: kdlsjfsdfds
+            POSTGRES_USER: db_admin
+        container_name: flask_db
+
+    flask:
+        env_file:
+            - debug_mode.env
+        build: ./dockerfiles/flask
+        command: python main.py
+        ports:
+            - 5000:5000
+        volumes:
+            - .:/code
+        links:
+            - guac:guac-server
+        restart: always
+        container_name: flask_app
+
+    init-guacamole-db:
+        image: guacamole/guacamole:1.0.0
+        command: ["/bin/sh", "-c", "test -e /init/initdb.sql && echo 'init file already exists' || /opt/guacamole/bin/initdb.sh --postgres > /init/initdb.sql" ]
+        volumes:
+            - dbinit:/init
+        container_name: init_guac
+
+    postgres:
+        image: postgres:latest
+        restart: unless-stopped
+        volumes:
+            - dbinit:/docker-entrypoint-initdb.d
+            - dbdata:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: dbuser
+            POSTGRES_PASSWORD: dbpassword1234
+        depends_on:
+            - init-guacamole-db
+        container_name: guac_db
+
+    guacd:
+        image: guacamole/guacd:1.0.0
+        restart: unless-stopped
+        container_name: practicum_guacd_1
+
+    guac:
+        image: guacamole/guacamole:1.0.0
+        restart: unless-stopped
+        ports:
+            - 8080:8080
+        environment:
+            GUACD_HOSTNAME: guacd
+            POSTGRES_HOSTNAME: postgres
+            POSTGRES_DATABASE: dbuser
+            POSTGRES_USER: dbuser
+            POSTGRES_PASSWORD: dbpassword1234
+        depends_on:
+            - postgres
+            - guacd
+        container_name: guac_app
+
+    nameserver:
+        build: ./dockerfiles/nameserver
+        container_name: nameserver
+        ports:
+            - "9090:9090"
+
+volumes:
+    dbinit:
+        driver: local
+    dbdata:
+        driver: local
+    flask_db:

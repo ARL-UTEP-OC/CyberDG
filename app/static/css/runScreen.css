@@ -1,0 +1,81 @@
+#Run-Screen {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#Image-Row {
+  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.col-main {
+  border: 2px solid gray;
+  padding: 5px;
+  text-align: center;
+}
+
+.card-setup {
+  text-align:left;
+}
+
+/* IDs and sizes of text inputs. */
+
+#IP-Address-Input {
+  width: 100px;
+}
+
+#Port-Input {
+  width: 100px;
+}
+
+#Start-Condition-Input {
+  width: 100px;
+}
+
+#Stop-Condition-Input {
+  width: 100px;
+}
+
+/* Buttons to set run conditions of individual machines. */
+
+#Accept-IP-Address {
+  background-color: white;
+  border-color: white;
+  color: black;
+  margin-left: 5px;
+  cursor: not-allowed;
+}
+
+#Accept-Port {
+  background-color: white;
+  border-color: white;
+  color: black;
+  margin-left: 5px;
+  cursor: not-allowed;
+}
+
+#Accept-Start-Condition {
+  color: black;
+  background-color: white;
+  border-color: white;
+  cursor: not-allowed;
+}
+
+#Accept-Stop-Condition {
+  color: black;
+  background-color: white;
+  border-color: white;
+  cursor: not-allowed;
+}
+
+/* Grid settings. */
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+.row-top{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}

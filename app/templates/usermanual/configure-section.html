@@ -1,0 +1,312 @@
+<style>
+  .image9 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 700px;
+    height: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image10 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    height: 800px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image11 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    height: 650px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image12 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    height: 800px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<!--Configure-->
+<div class="tab-pane fade" id="ConfigureSteps">
+  <div class="row text-white">
+    <div class="col-11">
+      <h2 class="display-4 text-white"> Configure </h2>
+      <br>
+      <p class="text-white mb-0">
+        The Configure screen allows for further customization of scenarios, and the addition of VMs
+        beyond those initially configured if desired. VMs can be customized in the following ways: Name,
+        Type (Victim, Exploit, Victim/Exploit), OS, Exploits, Vulnerabilities, Base Memory, Processor,
+        Network Type, Command Line Prompt and Command Line Order. Customized machines can be saved as Base
+        VMs in order to be used in future scenarios. </p>
+      <div class="separator"></div>
+      <p class="lead"> To configure a machine follow the instructions below: </p>
+      <p>(From the Landing Page select a scenario from the Available Scenario list, then select
+        the Configure button.)</p>
+      <p>Once the Configure section appears the following information will be displayed:</p>
+      <br>
+      <img class="image9" src="{{ url_for('static', filename='imgManual/configPage.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+      <br>
+      <ul>
+        <li>Main Section:
+          <ul>
+            <li>Displays the current machines available in the selected scenario:</li>
+            <ul>
+              <li>Machine Name</li>
+              <li>Machine OS</li>
+              <li>Network Name</li>
+              <li>Files added to the machine</li>
+              <li>Command Line Prompts</li>
+              <li>Execution Order</li>
+            </ul>
+          </ul>
+        </li>
+        <br>
+        <div class="row text-white">
+          <div class="col-lg-5">
+            <br>
+            <img class="image10" src="{{ url_for('static', filename='imgManual/configEditVM.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+            <br>
+          </div>
+
+          <div class="col-lg-7">
+            <li>Edit:
+              <ul>
+                <li>Allows the user to modify the machine configurations.</li>
+                <ul>
+                  <li>Machine Name: </li>
+                  <ul>
+                    <li>Allows the user to change the name of the machine.</li>
+                  </ul>
+                  <li>Type:</li>
+                  <ul>
+                    <li>Allows the user to change the type of the machine (Victim, Attacker,
+                      Victim/Attacker).</li>
+                  </ul>
+                  <li>VM OS:</li>
+                  <ul>
+                    <li>Allows the user to change the operating system of the machine.</li>
+                  </ul>
+                  <li>Exploits:</li>
+                  <ul>
+                    <li>Allows the user to add more exploit files from the drop-down menu.</li>
+                  </ul>
+                  <li>Vulnerabilities:</li>
+                  <ul>
+                    <li>Allows the user to add more vulnerable files from the drop-down menu.</li>
+                  </ul>
+                  <li>Add Files:</li>
+                  <ul>
+                    <li>Allows the user to upload a file directly into a scenario.</li>
+                  </ul>
+                  <li>Base Memory:</li>
+                  <ul>
+                    <li>Allows the user to adjust the amount of memory allocated to the machine.</li>
+                  </ul>
+                  <li>Processor:</li>
+                  <ul>
+                    <li>Allows the user to adjust the processors allocated to the machine.</li>
+                  </ul>
+                  <li>Network Type:</li>
+                  <ul>
+                    <li>Allows the user to change the network type (Default Internal Network, Nat Network, or Named Internal Network) of the machine.</li>
+                  </ul>
+                  <li>Command Line Prompt(s):</li>
+                  <ul>
+                    <li>Allows the user to pass commands needed to run on the machine before the file is executed.</li>
+                  </ul>
+                  <li>Command Line Order:</li>
+                  <ul>
+                    <li>Allows the user to specify what commands need to execute in a specific order.</li>
+                  </ul>
+                </ul>
+                <li>Back:</li>
+                <ul>
+                  <li>Allows the user to return to the configuration main page.</li>
+                </ul>
+                <li>Save:</li>
+                <ul>
+                  <li>Allows the user to save the changes made to the VM.</li>
+                </ul>
+              </ul>
+            </li>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row text-white">
+          <div class="col-lg-5">
+            <br>
+            <img class="image11" src="{{ url_for('static', filename='imgManual/configMachInfo.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+            <br>
+          </div>
+
+          <div class="col-lg-7">
+            <br>
+            <li>Info:</li>
+            <ul>
+              <li>Displays the information associated with the machine:</li>
+              <ul>
+                <li>Database ID</li>
+                <li>Date of Creation</li>
+                <li>Machine Name</li>
+                <li>Machine IP</li>
+                <li>Machine RDP IP</li>
+                <li>Machine RDP Port</li>
+                <li>Machine Username</li>
+                <li>Machine Password</li>
+                <li>Machine Type</li>
+                <li>Machine Processors</li>
+                <li>Machine Memory</li>
+                <li>Machine Network Type</li>
+                <li>Machine Command Line Prompt(s)</li>
+                <li>Machine Command Line Execution Order</li>
+                <li>Machine Scenario ID</li>
+                <li>Machine OS ID</li>
+                <li>Machine Configuration</li>
+                <li>Machine File(s)</li>
+              </ul>
+              <li>Cancel:</li>
+              <ul>
+                <li>Allows the user to return to the configuration main page.</li>
+              </ul>
+              <li>Delete Machine:</li>
+              <ul>
+                <li>Allows the user to delete the machine.</li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+        <br>
+        <li>Delete:
+          <ul>
+            <li>Allows the user to delete the machine.</li>
+          </ul>
+          <br>
+          <p>Once the user have completed the editing process, select Save to save the changes or Back
+            to return back to the Configuration page.</p>
+        </li>
+        <br>
+      </ul>
+      <h5><b>Other options to configure a machine include:</b></h5>
+      <br>
+      <div class="row text-white">
+        <div class="col-lg-5">
+          <br>
+          <img class="image12" src="{{ url_for('static', filename='imgManual/configAddMach.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+          <br>
+        </div>
+
+        <div class="col-lg-7">
+          <br>
+
+          <ul>
+            <li>Add Machine:</li>
+            <br>
+            <p>To add a machine,
+              follow the instructions below: </p>
+            <p>(From the Configure screen, click on Add Machine).</p>
+            <p>Once the Add Machine button is selected the user will be prompted to fill
+              in the following options:</p>
+            <ul>
+              <li>Enter Machine Name:
+                <ul>
+                  <li>Enter the desired name of the machine you wish to create. </li>
+                  <li style="color:#E74C3C" ;>*Note: Adding a name is required in order to add a new machine.*</li>
+                </ul>
+              </li>
+              <br>
+              <li>Machine Type:
+                <ul>
+                  <li>Select what type of machine you wish to create,(Victim,Attacker, Victim/Attacker).</li>
+                  <li style="color:#E74C3C" ;>*Note: Selecting a machine type is required in order to create a new machine.*</li>
+                </ul>
+              </li>
+              <br>
+              <li>VM OS:</li>
+              <ul>
+                <li>Select which operating system the machine will operate on.</li>
+              </ul>
+              <br>
+              <li>Exploits:</li>
+              <ul>
+                <li>Allows the user to add more exploit files from the dropdown menu.</li>
+              </ul>
+              <br>
+              <li>Vulnerabilities:</li>
+              <ul>
+                <li>Allows the user to add more vulnerable files from the dropdown menu.</li>
+              </ul>
+              <br>
+              <li>Add Files:</li>
+              <ul>
+                <li>Allows the user to upload a file directly into a scenario.</li>
+              </ul>
+              <br>
+              <li>Base Memory:</li>
+              <ul>
+                <li>Select the amount of RAM that is allocated to this machine. The base memory allocation can be between 4Mb and 16384Mb</li>
+                <li><b>The default amount of RAM will be set to 5000Mb</b></li>
+              </ul>
+              <br>
+              <li>Processors:</li>
+              <ul>
+                <li>Select the number of processors that can be allocated to this machine. The processor allocation can be between 1 and 4 processors</li>
+                <li><b>The default number of processors will be set to 2</b></li>
+              </ul>
+              <br>
+              <li> Network Type:</li>
+              <ul>
+                <li>Allows the user to change the network type from (Default Internal Network, Nat Network, or Named Internal Network).</li>
+              </ul>
+              <br>
+              <li>Command Line Prompt(s):</li>
+              <ul>
+                <li>Allows the user to pass commands needed to run on the machine before the file is executed on the machine.</li>
+              </ul>
+              <br>
+              <li>Command Line Order:</li>
+              <ul>
+                <li>Allows the user to specify what commands need to execute in a specific order.</li>
+              </ul>
+              <br>
+              <li>To finalize the machine creation, select Save. Or select Back to cancel machine creation.</li>
+              <br>
+              <li>Once you have selected the Save button, the machine will be added/modified to the scenario.</li>
+            </ul>
+          </ul>
+        </div>
+      </div>
+      <ul>
+        <li>Next:</li>
+        <ul>
+          <li>To finalize the machine configuration, select Next.</li>
+          <li>Once you have selected the Next button, the Network Setup section will open to take you through the next steps of creating/editing a new scenario.</li>
+        </ul>
+        <br>
+        <li> Exit:</li>
+        <ul>
+          <li>The Exit button on the top right corner will transport the user back to the Landing Page.</li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</div>

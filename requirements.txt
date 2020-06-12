@@ -1,0 +1,14 @@
+Flask
+python-dotenv
+Flask-SQLAlchemy
+psycopg2
+Flask-Migrate
+Flask-Script
+requests
+guacapy
+Flask-Admin
+Flask-BabelEx
+Pyro4
+Flask-WTF
+flask-marshmallow
+marshmallow-sqlalchemy

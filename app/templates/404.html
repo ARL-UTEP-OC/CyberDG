@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <style>
+        .error-card {
+         padding: 4rem;
+          margin-left: 16rem;
+          margin-right: 16rem;
+          margin-top:2rem;
+          text-align: center;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="card error-card">
+        <div class="row">
+            <div class="col">
+                <br>
+                <h1>{{error_number}}</h1>
+                <br>
+                <h2>{{error_text}}</h2>
+                <br>
+                <p>{{message}}</p>
+                <br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

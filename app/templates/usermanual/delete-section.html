@@ -1,0 +1,36 @@
+<style>
+  .image18 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 350px;
+    height: 250px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  </style>
+
+<!--Delete-->
+  <div class="tab-pane fade" id="DeleteSteps">
+    <div class="row text-white">
+      <div class="col-11">
+        <h2 class="display-4 text-white"> Delete </h2>
+        <br>
+        <p class="lead text-white mb-0">
+          The Delete button deletes a scenario from the list.
+        </p>
+        <div class="separator"></div>
+        <p class="lead"> To delete a scenario, navigate to the Landing Page and select the scenario
+        you wish to delete on the Available Scenarios list. Then select the Delete button on the
+      Landing Page and the scenario will be deleted from the system.</p>
+      <br>
+      <img class="image18" src="{{ url_for('static', filename='imgManual/deleteModal.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500>
+      <br>
+      <p align="center"><small>Select Confirm to delete the selected scenario. Or select Cancel or 'X' to avoid deleting the scenario.</small></p>
+      <br>
+
+      </div>
+    </div>
+  </div>
+</div>

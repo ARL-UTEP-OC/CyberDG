@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container landing-page">
+    <div class="card my-card">
+        <div class="row">
+            <div class="col-md-8">
+
+                <ul class="nav nav-tabs">
+                    <li><a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Logs</a></li>
+                    <li><a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Performance</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="text-right mb-3">
+                    <a href="#" class="btn btn-primary"> <i class="fa fa-plus"></i> Export All </a>
+                </div>
+            </div>
+        </div>
+        <div class="card main-card">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="overflow-auto" style=" margin-top: 15px; max-height: 250px">
+                        <div class="wrapper container">
+                            <div class='row'>
+                                <div class="col-md-4">
+                                  <img  src="{{ url_for('static', filename='img/bugcompRender.png') }}" class="img-fluid" />
+                                </div><!-- Image-->
+                                <div class="col-md-4">
+                                    <p>Name: Vm-Worm</p>
+                                    <p>OS: Kali</p>
+                                    <p>Exploit: e0</p>
+                                    <p>Collector: ECELd</p>
+                                </div><!-- Machine Info-->
+                                <div class="col-md-4">
+                                    <select class="form-control">
+                                        <option>Export..</option>
+                                        <option>All Logs</option>
+                                        <option>Keylogger</option>
+                                        <option>Tshark</option>
+                                        <option>Screenshots</option>
+                                        <option>Snoopy</option>
+                                    </select>
+                                </div><!-- Dropdown-->
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                                <!-- Next Machine-->
+                                <div class="col-md-4">
+                                    <img  src="{{ url_for('static', filename='img/VictimIconRender.png') }}" class="img-fluid"/>
+                                </div><!-- Image-->
+                                <div class="col-md-4">
+                                    <p>Name: Vm-Worm</p>
+                                    <p>OS: Kali</p>
+                                    <p>Exploit: e0</p>
+                                    <p>Collector: ECELd</p>
+                                </div><!-- Machine Info-->
+                                <div class="col-md-4">
+                                    <select class="form-control">
+                                        <option>Export..</option>
+                                        <option>All Logs</option>
+                                        <option>Keylogger</option>
+                                        <option>Tshark</option>
+                                        <option>Screenshots</option>
+                                        <option>Snoopy</option>
+                                    </select>
+                                </div><!-- Dropdown-->
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                                <!-- Next Machine-->
+                                <div class="col-md-4">
+                                  <img  src="{{ url_for('static', filename='img/VictimIconRender.png') }}" class="img-fluid"/>
+                                </div><!-- Image-->
+                                <div class="col-md-4">
+                                    <p>Name: Vm-Worm</p>
+                                    <p>OS: Kali</p>
+                                    <p>Exploit: e0</p>
+                                    <p>Collector: ECELd</p>
+                                </div><!-- Machine Info-->
+                                <div class="col-md-4">
+                                    <select class="form-control">
+                                        <option>Export..</option>
+                                        <option>All Logs</option>
+                                        <option>Keylogger</option>
+                                        <option>Tshark</option>
+                                        <option>Screenshots</option>
+                                        <option>Snoopy</option>
+                                    </select>
+                                </div><!-- Dropdown-->
+                            </div><!-- Row-->
+                        </div>
+                    </div><!-- Scroll -->
+                </div><!-- Tab 1 -->
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="overflow-auto" style=" margin-top: 15px;">
+                        <div class="wrapper container">
+                            <div class='row'>
+                                <div class="col-md-4">
+                                    <img  src="{{ url_for('static', filename='img/bugcompRender.png') }}" class="img-fluid" />
+                                </div><!-- Image-->
+                                <div class="col-md-4">
+                                    <p>Name: Vm-Worm</p>
+                                    <p>OS: Kali</p>
+                                    <p>Exploit: e0</p>
+                                    <p>Collector: ECELd</p>
+                                </div><!-- Machine Info-->
+                                <div class="col-md-4">
+                                    <select class="form-control">
+                                        <option>Export..</option>
+                                        <option>All Stats & Files</option>
+                                        <option>CPU Statistics</option>
+                                        <option>Memory Statistics</option>
+                                        <option>New Files</option>
+                                        <option>Removed Files</option>
+                                    </select>
+                                </div><!-- Dropdown-->
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                                <!-- Next Machine-->
+                                <div class="col-md-4">
+                                    <img  src="{{ url_for('static', filename='img/VictimIconRender.png') }}" class="img-fluid"/>
+                                </div><!-- Image-->
+                                <div class="col-md-4">
+                                    <p>Name: Vm-Worm</p>
+                                    <p>OS: Kali</p>
+                                    <p>Exploit: e0</p>
+                                    <p>Collector: ECELd</p>
+                                </div><!-- Machine Info-->
+                                <div class="col-md-4">
+                                    <select class="form-control">
+                                        <option>Export..</option>
+                                        <option>All Stats & Files</option>
+                                        <option>CPU Statistics</option>
+                                        <option>Memory Statistics</option>
+                                        <option>New Files</option>
+                                        <option>Removed Files</option>
+                                    </select>
+                                </div><!-- Dropdown-->
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                                <!-- Next Machine-->
+                                <div class="col-md-4">
+                                    <img  src="{{ url_for('static', filename='img/VictimIconRender.png') }}" class="img-fluid"/>
+                                </div><!-- Image-->
+                                <div class="col-md-4">
+                                    <p>Name: Vm-Worm</p>
+                                    <p>OS: Kali</p>
+                                    <p>Exploit: e0</p>
+                                    <p>Collector: ECELd</p>
+                                </div><!-- Machine Info-->
+                                <div class="col-md-4">
+                                    <select class="form-control">
+                                        <option>Export..</option>
+                                        <option>All Stats & Files</option>
+                                        <option>CPU Statistics</option>
+                                        <option>Memory Statistics</option>
+                                        <option>New Files</option>
+                                        <option>Removed Files</option>
+                                    </select>
+                                </div><!-- Dropdown-->
+                            </div><!-- Row-->
+                        </div>
+                    </div><!-- Scroll -->
+                </div><!-- Tab Contents -->
+            </div>
+        </div>
+    </div>
+</div>
+<style >
+.overflow-auto {
+    max-height: 400px !important;
+}
+
+.main-card {
+    height: 450px;
+}
+
+.nav-link {
+    width: 300px;
+
+
+}
+
+hr {
+    border: .5px solid #204562;
+}
+
+</style>
+
+
+{% endblock content %}

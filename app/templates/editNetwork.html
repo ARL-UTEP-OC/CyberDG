@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="configureModalLabel">Edit Network - {{machine.name}}</h5>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Start of form -->
+                    <p>1. NAT network will not allow access to other VMs, only Host</p>
+                    <p>2. Default Internal Network will be a network created for this scenario</p>
+                    <p>3. You can create and name your own internal network</p>
+                    <form method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputType">Network Type:</label>
+                                <select name="network_type" class="form-control" onchange="enableInput(this);">
+                                    {% for network_type in network_types %}
+                                        <option
+                                            value="{{network_type.name}}"
+                                            id="network-type-{{network_type.name}}"
+                                            {% if machine and machine.network_type.name == network_type.name %}
+                                                selected
+                                            {% elif form and form.network_type.data and form.network_type.data == network_type.name %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            {{network_type.value}}
+                                        </option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </div>
+                        <div
+                            class="form-row"
+                            id="named-network-name"
+                            {% if machine and machine.network_type.name == 'named_network' %}
+                                style="display: block;"
+                            {% elif form and form.network_type.data and form.network_type.data == 'named_network' %}
+                                style="display: block;"
+                            {% else %}
+                                style="display: none;"
+                            {% endif %}
+                        >
+                            <div class="form-group col-md-6">
+                                <label for="inputType">Network Name</label>
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="network_name"
+                                    placeholder="Network name"
+                                    {% if machine and machine.network_name %}
+                                        value="{{machine.network_name}}"
+                                    {% elif form and form.network_name.data %}
+                                        value="{{form.network_name.data}}"
+                                    {% endif %}
+                                >
+                            </div>
+                        </div>
+                        <p>A static IP has been assigned to this machine. Take precaution when changing the IP.</p>
+                        <div class="form-group">
+                            <label for="machine-ip">Machine IP:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="machine-ip"
+                                name="network_ip"
+                                placeholder="IP"
+                                required
+                                {% if machine %}
+                                    value="{{machine.machine_ip}}"
+                                {% elif form and form.name.data %}
+                                    value="{{form.network_ip.data}}"
+                                {% endif %}>
+                        </div>
+
+                        {% if machine %}
+                            <input type="hidden" name="id" value="{{machine.id}}">
+                        {% elif form and form.id %}
+                            <input type="hidden" name="id" value="{{form.id.data}}">
+                        {% endif %}
+                </div>
+            </div>
+        </div><!-- Modal Body End -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger"
+              onclick="window.location.href='{{ url_for('simple_network_setup', id=scenario_id) }}';"><i class="far fa-window-close"></i>
+              Cancel </button>
+             <button type="submit" class="btn btn-success"><i class="far fa-file"></i> Save </button>
+            
+
+        </div><!-- Modal Footer End -->
+        </form>
+    </div><!-- Modal Content End -->
+</div><!-- Modal Dialog End -->
+
+<script>
+    function enableInput(context) {
+        if (context.value == "named_network") {
+            document.getElementById("named-network-name").style.display = "block";
+        }
+        else {
+            document.getElementById("named-network-name").style.display = "none";
+        }
+    }
+</script>
+{% endblock %}

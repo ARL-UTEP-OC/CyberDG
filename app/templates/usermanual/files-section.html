@@ -1,0 +1,86 @@
+<style>
+  .image8 {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 600px;
+    height:400px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  </style>
+<!--Files-->
+<div class="tab-pane fade" id="FilesSteps">
+  <div class="row text-white">
+    <div class="col-11">
+      <h2 class="display-4 text-white"> Files </h2>
+      <br>
+      <p class="lead text-white mb-0">
+        A list of previously uploaded files is populated for the user's convenience,
+        divided into Exploits and Vulnerabilities. </p>
+      <div class="separator"></div>
+      <p class="lead"> To view the list of files previously uploaded, select the Files button
+        on the Landing Page.</p>
+      <p>Once the user has selected the Files button a modal will pop-up displaying the following information:</p>
+      <br>
+      <img class="image8" src="{{ url_for('static', filename='imgManual/filesLanding.jpg') }}" alt="Not Found" onerror=this.src="{{ url_for('static', filename='imgManual/image-not-available.jpg') }}" width=500 height=500 >
+      <br>
+      <ul>
+        <li> Vulnerabilities:</li>
+        <b><small style="color:#E74C3C" ;>*Note: Selecting the file will direct to an edit screen.*</small></b>
+        <ul>
+          <li>The Vulnerabilities tab contains all the vulnerable files that have been previously uploaded.
+          </li>
+          <br>
+          <li>The information provided is:</li>
+          <ul>
+            <li>Vulnerability:</li>
+            <ul>
+              <li>A list of vulnerable files that have been uploaded.</li>
+            </ul>
+            <li>Description:</li>
+            <ul>
+              <li>The description of the vulnerability the user has previously written.</li>
+            </ul>
+            <li>Actions:</li>
+            <ul>
+              <li>The option to delete that specific vulnerable file.</li>
+            </ul>
+          </ul>
+        </ul>
+        <br>
+        <li>Exploits:</li>
+        <b><small style="color:#E74C3C" ;>*Note: Selecting the file will direct to an edit screen.*</small></b>
+        <ul>
+          <li>The Exploits tab contains all the exploit files that have been previously uploaded.
+          </li>
+          <br>
+          <li>The information provided is:</li>
+          <ul>
+            <li>Exploit:</li>
+            <ul>
+              <li>A list of vulnerable files that have been uploaded.</li>
+            </ul>
+            <li>Description:</li>
+            <ul>
+              <li>The description of the exploit the user has previously written.</li>
+            </ul>
+            <li>Actions:</li>
+            <ul>
+              <li>The option to delete that specific exploit file.</li>
+            </ul>
+          </ul>
+        </ul>
+        <li>Import:</li>
+        <ul>
+          <li>This button allows you to directly upload a file to a system without creating a scenario.
+            <small>*See the Import section for instructions on how to import a file* </small> </li>
+        </ul>
+        <br>
+        <li>Select the "X" on the top right corner of the modal to exit out of the Files Section. This option will take you
+          back to the Landing Page.</li>
+
+    </div>
+  </div>
+</div>

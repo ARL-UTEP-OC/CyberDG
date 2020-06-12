@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--Container for VMs-->
+<div class="container config-main">
+  <div class="card vm-card">
+
+    <div class="row ">
+      <!--Title-->
+      <div class="col" align="right">
+        <button class="btn btn-primary" onclick="window.location.href='{{ url_for('scenario', id=scenario.id) }}';">
+          Exit
+        </button>
+      </div>
+      <div class="col-12" align="center">
+        <h2>Configuration - {{scenario.name}}</h2>
+      </div>
+      <!--Save and Question Buttons-->
+      {# <div class="col-2" align="right">
+           <i class="fas fa-question-circle fa-2x"></i> <i class="fas fa-save fa-2x"></i>
+         </div> #}
+    </div>
+
+
+    <!--Begin (Outside) VM Cards-->
+    <div class="row justify-content-center" style="padding:10px">
+      <div class="col-12">
+        <div class="card">
+          {% include "machinesCards.html" %}
+        </div>
+      </div>
+    </div>
+
+    <!--Buttons for VMs-->
+
+    <div class="row">
+      <div class="col-4">
+        <button class="btn btn-secondary" onclick="window.location.href='{{ url_for('scenario', id=scenario.id) }}';">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+      </div>
+      <div class="col-4 text-center">
+        <button class="btn btn-secondary" onclick="window.location.href='{{ url_for('new_machine', scenario_id=scenario.id) }}';">
+          <i class="fas fa-plus"></i> Add Machine
+        </button>
+      </div>
+      <div class="col-4 text-right">
+        <button class="btn btn-success" onclick="window.location.href='{{ url_for('simple_network_setup', id=scenario.id) }}';"><i class="fas fa-arrow-right"></i> Next </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content %}

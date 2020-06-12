@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container landing-page">
+  <div class="card my-card">
+    <div class="row">
+      <div class="col" align="right">
+        <button class="btn btn-primary" onclick="window.location.href='{{ url_for('scenario', id=scenario.id) }}';">
+          Exit
+        </button>
+      </div>
+      <div class="col-12">
+        <h2 class="text-center">Network Setup - {{scenario.name}}
+          <h2>
+      </div>
+    </div>
+
+
+    <!--Begin (Outside) VM Cards-->
+    <div class="row justify-content-center" style="padding:10px">
+      <div class="col-12">
+        <div class="card">
+          {% include "networkCards.html" %}
+        </div>
+      </div>
+    </div>
+
+    {# <div class="row justify-content-center">
+            <button class="btn btn-secondary"
+                onclick="window.location.href='{{ url_for('new_machine', scenario_id=scenario.id) }}';">
+                <i class="fas fa-plus"></i> Add Machine
+            </button>
+        </div>
+        <hr> #}
+    {# <div class="row justify-content-around buttons-row">
+            <button type="button" disabled class="btn btn-primary">
+                <i class="fa fa-plus"></i> Set Conditions </button>
+            <button disabled class="btn btn-primary">
+                <i class="fa fa-cog"></i> Finalize Connections </button>
+            <button disabled class="btn btn-primary">
+                <i class="fa fa-database"></i> Automatically instal VM(s) </button>
+            <button disabled class="btn btn-primary"
+                onclick="window.location.href='{{ url_for('advanced_network_setup', id=scenario.id) }}';">
+                <i class="fa fa-running"></i> Advanced System Setup </button>
+            <button class="btn btn-primary"
+                onclick="window.location.href='{{ url_for('build_scenario', id=scenario.id) }}';">
+                <i class="fa fa-running"></i> Build Scenario </button>
+
+        </div> #}
+
+    <div class="row justify-content-around config-row">
+      <div class="col-8">
+        <button class="btn btn-secondary" onclick="window.location.href='{{ url_for('configure', id=scenario.id) }}';">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-success" onclick="window.location.href='{{ url_for('build_scenario', id=scenario.id) }}';"><i class="fas fa-arrow-right"></i> Next </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <!--necessary for credential caching -->
+    <object type="text/html" data="http://localhost:8080/guacamole/#/?username={{scenario.id}}&password={{scenario.id}}" width="1px" height="1px"></object>
+  </div>
+
+</div>
+
+<style>
+  .main-card {
+    height: 350px;
+  }
+</style>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+*pyc
+.idea
+server/vagrantfiles
+*.log
+.DS_Store
+*.log
+.DS_Store
+existing_network
+*.box

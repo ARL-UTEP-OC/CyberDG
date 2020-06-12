@@ -1,0 +1,66 @@
+.landing-page {
+  margin-top: 30px;
+}
+
+.my-card {
+  padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-card {
+  height: 350px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.info-card {
+  height: 300px;
+}
+
+.buttons-row{
+  margin: 20px
+}
+
+body {
+  background: #204562!important;
+}
+
+.btn-primary {
+    color: #fbfbfb !important;
+    background-color: #3E3E3F !important;
+    border-color: #3E3E3F !important;
+}
+
+.card-header {
+  background-color: #204562!important;
+  color: #eeee;
+}
+.input-group-text{
+  background-color: #2D5E7C!important;
+    color: #eeee;
+}
+
+.main-card {
+  background: #eff4f7;
+}
+.modal-dialog {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.modal-header{
+    background-color: #204562!important;
+  color: #eeee;
+}
+.modal-body, .modal-footer{
+    background: #eff4f7;
+}
+
+.active-color {
+  background-color: #2D5E7C !important;
+  border-color: #2D5E7C !important;
+}
+
+.card-modal {
+  padding: 10px
+}

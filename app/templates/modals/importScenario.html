@@ -1,0 +1,49 @@
+<!-- Modal -->
+<div class="modal fade" id="importFileModal" tabindex="-1" role="dialog" aria-labelledby="importFileModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!-- todo: add action to the form-->
+    <form class="form" id="importForm" action="{{url_for('scenario_import')}}" method="POST" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100" id="importFileModalLabel"> Import Scenario </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <div class="modal-body">
+            <div class="card card-modal">
+              <!--import name starts-->
+              <div class="form-group">
+                <label for="upload_name"> Scenario Name: </label>
+                <input type="text" class="form-control" id="scenario_name" placeholder="Enter Scenario Name..." name="name" required>
+                <div class="invalid-feedback">Please fill out this field.</div>
+              </div>
+              <!--import name ends-->
+              <div class="form-group">
+                <label for="browseFile"> Browse: </label>
+                <input type="file" class="form-control" id="browserFile" placeholder="..." name="file" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+              </div>
+            </div>
+          </div>
+        <div class="modal-footer justify-content-center">
+          <button type="submit" class="btn btn-primary" id="importButton"><i class="fas fa-file-import"></i> Import </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<script>
+  //Script to avoid to show error messages before input text
+  $("#importButton").click(function(event) {
+    var form = $("#importForm");
+    if (form[0].checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    form.addClass('was-validated');
+  });
+</script>

@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<body onload="move({{nummachines}})">
+  <style>
+    #myProgress {
+      width: 98.5%;
+      background-color: #ddd;
+    }
+
+    #myBar {
+      width: 0%;
+      height: 30px;
+      background-color: #4CAF50;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+    }
+  </style>
+
+  <div class="container landing-page">
+    <div class="card my-card">
+      <div class="col" align="right">
+        <button class="btn btn-primary" onclick="window.location.href='{{ url_for('scenario', id=scenario.id) }}';">
+          Exit
+        </button>
+      </div>
+      <div>
+        <h2 class="text-center">Build - {{scenario.name}}</h2>
+      </div>
+      <br>
+      <div class="col" align="center">
+        <!--<button class="btn btn-success" onclick="move({{nummachines}})">Build</button> -->
+      </div>
+      <br>
+      <section style="padding-left: 15px;">
+        <div class="row">
+          <p>
+            <div id="myProgress">
+              <div id="myBar">0%</div>
+            </div>
+          </p>
+        </div>
+        <h7>Status: Building </h7>
+      </section>
+      <div class="card" id="Main-content">
+        <div class="row">
+          <div class="col" id="runtabscolumn">
+            <!-- START Run Tab-->
+            <div class="runtabcontent">
+              <!-- START Row for VMs Column -->
+              <div class="row">
+                <div class="col">
+
+                  {% for machine in machines %}
+                  <div id="vm.{{machine.id}}" class="vmtabcontent">
+                    <!--START for 2 Column Layout inside the VM Tab-->
+                    <div class="row justify-content-around">
+                      <!-- Inner Column 1 (Status Info)-->
+                      <div class="col-12" align="center" id="innercol1">
+                        <div class="col" style="padding:10px;">
+                          <div class="card border-dark" style="width: 18rem;">
+                            <img class="card-img-top" {% if machine.machine_type == machine.machine_type.attacker %} src="{{ url_for('static', filename='img/Malware.jpg') }}" {% elif machine.machine_type == machine.machine_type.victim %}
+                              src="{{ url_for('static', filename='img/Victim.jpg') }}" {% elif machine.machine_type == machine.machine_type.base %} src="{{ url_for('static', filename='img/Base.jpg') }}"
+                              {% elif machine.machine_type == machine.machine_type.victim_attacker %} src="{{ url_for('static', filename='img/Victware.jpg') }}" {%endif%} alt="Card image cap" style="height: 12rem">
+                            <div class="card-body">
+                              <h4 class="card-title">{{machine.name}}</h4>
+                              <p class="text-left">OS: {{machine.os}}</p>
+                              <p class="text-left">Files: {% if machine.file %}
+                                {% for f in machine.file %}
+                                {{f.name}}
+                                {% endfor %}
+                                {% else %}
+                                None
+                                {% endif %}</p>
+                              <p class="text-left">Commands: {% if machine.cmd_line %}{{machine.cmd_line}}{% else %}None{% endif %}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-around">
+                      <div id="col-bottombuttons">
+                        <button class="btn btn-primary" id="button-remotevm" type="button" onclick="window.open('http://localhost:8080/guacamole/#/client/{{machine.connection_link}}')">
+                            RDP to {{machine.name}}
+                          </button>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveAsBaseModal{{machine.id}}">
+                              Save as Base Machine
+                            </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="saveAsBaseModal{{machine.id}}" tabindex="-1" role="dialog" aria-labelledby="saveAsBaseLabel{{machine.id}}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="saveAsBaseLabel{{machine.id}}">Save {{machine.name}} as Base Machine?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label>What would you like to name your base machine?</label>
+                            <input type="text" class="form-control" id="baseNameInput{{machine.id}}" aria-describedby="nameHelp{{machine.id}}">
+                            <small id="nameHelp{{machine.id}}" class="form-text text-muted">Name must contain only letters and numbers. No spaces or special characters.</small>
+                            <input type="hidden" id="vmNameInput" value="{{machine.name}}-{{machine.id}}">
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="far fa-window-close"></i> Cancel </button>
+                          <button type="button" onclick="submit_base_form({{machine.id}});" class="btn btn-success"><i class="far fa-save"></i> Save </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--END for 2 Column Layout inside the VM Tab-->
+                  <hr>
+                  {% endfor %}
+
+                </div>
+              </div> <!-- END Run 1 Tab-->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div> <!-- END Main Card -->
+
+      <div class="row justify-content-around config-row">
+        <div class="col-8">
+          <button class="btn btn-secondary" onclick="window.location.href='{{ url_for('simple_network_setup', id=scenario.id) }}';">
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-success" onclick="window.location.href='{{ url_for('run_scenario', id=scenario.id) }}';"><i class="fa fa-running"></i> Run </button>
+        </div>
+      </div>
+
+
+
+      <!-- START Script for VM Tabs -->
+      <script>
+        function submit_base_form(id) {
+          console.log('the id is', id);
+          let name = $("#baseNameInput" + id).val();
+          let data = {
+            name: name,
+            id: id
+          };
+          console.log(data);
+          $.ajax({
+            type: "POST",
+            url: "{{url_for('build_base_machine')}}",
+            data: data,
+            success: function() {
+              console.log('the request was sent');
+              $('#saveAsBaseModal' + id).modal('hide')
+            },
+          });
+        };
+
+        var i = 0;
+
+        function move(n) {
+          if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var width = 0;
+            var id = setInterval(frame, 600 * n);
+
+            function frame() {
+              if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+              } else {
+                width++;
+                elem.style.width = width + "%";
+                elem.innerHTML = width + "%";
+              }
+            }
+          }
+        }
+      </script>
+    </div>
+  </div>
+</body>
+
+
+{% endblock content %}
